@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contadores de Botones</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Contadores de Botones</h1>
+        <h2>Prueba los botones "NO"</h2>
+        
+        <div class="content">
+            <div class="section">
+                <p>¿Quieres que seamos algo más?</p>
+                <button class="no-button" id="noButton1">NO</button>
+            </div>
+
+            <div class="section">
+                <p>¿Quieres ver algo?</p>
+                <button class="no-button" id="noButton2">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar contadores si no existen en localStorage
+        let clickCount1 = localStorage.getItem('clickCount1') ? parseInt(localStorage.getItem('clickCount1')) : 0;
+        let clickCount2 = localStorage.getItem('clickCount2') ? parseInt(localStorage.getItem('clickCount2')) : 0;
+
+        // Función para actualizar los contadores y guardarlos en localStorage
+        function updateClickCount(buttonId) {
+            if (buttonId === 'noButton1') {
+                clickCount1++;
+                localStorage.setItem('clickCount1', clickCount1);
+            } else if (buttonId === 'noButton2') {
+                clickCount2++;
+                localStorage.setItem('clickCount2', clickCount2);
+            }
+
+            // Mostrar el número de clics solo en la consola
+            console.log(`Botón "NO" 1 ha sido presionado ${clickCount1} veces.`);
+            console.log(`Botón "NO" 2 ha sido presionado ${clickCount2} veces.`);
+        }
+
+        // Asignar evento de clic a los botones "NO"
+        document.getElementById('noButton1').addEventListener('click', function() {
+            updateClickCount('noButton1');
+        });
+
+        document.getElementById('noButton2').addEventListener('click', function() {
+            updateClickCount('noButton2');
+        });
+
+        // Imprimir en consola la cantidad inicial de clics (opcional)
+        console.log(`Inicialmente, Botón "NO" 1 ha sido presionado ${clickCount1} veces.`);
+        console.log(`Inicialmente, Botón "NO" 2 ha sido presionado ${clickCount2} veces.`);
+    </script>
+</body>
+</html>

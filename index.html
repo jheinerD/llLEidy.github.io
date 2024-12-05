@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Leidy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>PARA LEIDY</h1>
+        <h2>Te quise hacer esto para que seas la única en tenerlo</h2>
+        
+        <div class="content">
+            <div class="section">
+                <!-- Imagen con contraseña -->
+                <img id="image1" src="Libro.png" alt="Imagen Leidy" onclick="showPasswordPrompt('image1')" onerror="this.onerror=null; this.src='error.jpg';">
+                <p>QUERIDA LEIDY<p>
+                    <p>
+                    Constraseña:05/08/2004
+                    </p>
+            </div>
+            <div class="section">
+                <img id="image2" src=" leidydogtora.jpg" alt="Razones" onclick="showPasswordPrompt('image2')" onerror="this.onerror=null; this.src='error.jpg';">
+                <p>PORQUE QUERIA QUE NOS CONOCIERAMOS?</p>
+                <p>Contraseña: hershey</p>
+            </div>
+            <div class="section">
+                <img id="image3" src=" Leidyenf.jpg" alt="Carta" onclick="showPasswordPrompt('image3')" onerror="this.onerror=null; this.src='error.jpg';">
+                <p>CARTA<p>
+                    <p>
+                    Contraseña: futura dogtora
+                </p>
+
+            </div>
+        </div>
+        <div class="date-game">
+            <p>oprime las imagenes :)</p>
+            <p>¿Cuál es la fecha en la que me decidí escribirte por primera vez?
+                Contraseña: 13/05/2024
+            </p>
+            <input type="text" id="dateInput" placeholder="dd/mm/yyyy">
+            <button class="date-btn" onclick="checkDate()">Enviar</button>
+            <p id="feedback"></p>
+        </div>
+    </div>
+
+    <!-- Formulario para ingresar la contraseña -->
+    <div id="passwordPrompt" class="hidden">
+        <h2>Ingresa la contraseña:</h2>
+        <input type="text" id="passwordInput" placeholder="Contraseña">
+        <button id="passwordSubmit">Enviar</button>
+        <button id="cancelButton">Cancelar</button>
+        <p id="passwordFeedback"></p>
+    </div>
+
+    <!-- Contenedor centrado para mensajes -->
+    <div id="centerMessage" class="hidden">
+        <p id="centerMessageText"></p>
+    </div>
+
+    <script>
+        // Contraseñas y enlaces para las imágenes
+        const imageData = {
+            image1: { password: "05/08/2004", link: "https://www.canva.com/design/DAGYatuf5zg/A39UlojiDzt9J_m2UpUsUg/view?utm_content=DAGYatuf5zg&utm_campaign=designshare&utm_medium=link&utm_source=editor" }, // "QUERIDA LEIDY"
+            image2: { password: "hershey", link: "https://www.canva.com/design/DAGYaC7MkiY/cUPmwuyJaNEqyM3W4zkLQA/view?utm_content=DAGYaC7MkiY&utm_campaign=designshare&utm_medium=link&utm_source=editor" }, // "RAZONES..."
+            image3: { password: "futura dogtora", link: "https://www.canva.com/design/DAGWmQsHF8k/g3eT5kaZ0UNFbB6Z_WNACg/view?utm_content=DAGWmQsHF8k&utm_campaign=designshare&utm_medium=link&utm_source=editor" } // "CARTA"
+        };
+
+        // Función para mostrar el formulario de contraseña al hacer clic en una imagen
+        function showPasswordPrompt(imageId) {
+            const passwordPrompt = document.getElementById('passwordPrompt');
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordSubmit = document.getElementById('passwordSubmit');
+            const cancelButton = document.getElementById('cancelButton');
+            const passwordFeedback = document.getElementById('passwordFeedback');
+            
+            // Mostrar el formulario de la contraseña
+            passwordPrompt.style.display = 'block';
+            passwordInput.focus();
+            
+            // Añadir el comportamiento del botón "Cancelar"
+            cancelButton.onclick = function() {
+                passwordPrompt.style.display = 'none';  // Ocultar el formulario de contraseña
+                passwordFeedback.textContent = ''; // Limpiar mensaje de error
+            };
+
+            // Configurar la acción del botón "Enviar"
+            passwordSubmit.onclick = function() {
+                const userPassword = passwordInput.value;
+                const imageInfo = imageData[imageId];
+                
+                if (userPassword === imageInfo.password) {
+                    passwordFeedback.textContent = "¡Contraseña correcta! Redirigiendo...";
+                    passwordFeedback.style.color = "green";
+                    
+                    // Redirigir automáticamente después de un pequeño retraso
+                    setTimeout(function() {
+                        window.location.href = imageInfo.link; // Redirigir al enlace
+                    }, 1000); // 1 segundo de retraso
+                } else {
+                    passwordFeedback.textContent = "Contraseña incorrecta. Inténtalo de nuevo.";
+                    passwordFeedback.style.color = "red";
+                }
+            };
+        }
+
+        // Función de ejemplo para verificar fechas
+        let attempts = 0;
+        function checkDate() {
+            const correctDate = "13/05/2024"; // Cambia a la fecha correcta
+            const userDate = document.getElementById("dateInput").value;
+            const feedback = document.getElementById("feedback");
+            const centerMessage = document.getElementById("centerMessage");
+            const centerMessageText = document.getElementById("centerMessageText");
+
+            if (userDate === correctDate) {
+                feedback.textContent = "¡Correcto! Sabía que lo recordarías. 💚";
+                feedback.style.color = "green";
+                
+                // Redirigir a la siguiente página
+                setTimeout(function() {
+                    window.location.href = "nextPage.html"; // Redirigir a nextPage.html
+                }, 1000); // 1 segundo de retraso
+            } else {
+                attempts++; // Aumentar los intentos
+                let message = "";
+                switch (attempts) {
+                    case 1:
+                        message = "Si lo leíste?? (Te quedan 3 intentos)";
+                        break;
+                    case 2:
+                        message = "¿En serio lo leíste? No te creo (Te quedan 2 intentos)";
+                        break;
+                    case 3:
+                        message = "Si no lo has leído, te entiendo (Te queda 1 intento)";
+                        break;
+                    case 4:
+                        message = "La fecha  es esta: 13/05/2024";
+                        break;
+                    default:
+                        message = "La fecha es esta: 13/05/2024";
+                }
+                
+                // Mostrar mensaje en el contenedor centrado
+                centerMessageText.textContent = message;
+                centerMessage.style.display = "block";
+
+                // Ocultar el mensaje después de 3 segundos
+                setTimeout(() => {
+                    centerMessage.style.display = "none";
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contraseña para Imágenes</title>
+    <style>
+        /* Estilo General */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, purple, green);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .center-message {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10% auto;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #passwordSection input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+
+        #unlockButton {
+            margin-top: 10px;
+            background: linear-gradient(45deg, purple, green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        #unlockButton:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, green, purple);
+        }
+
+        #imageSection h2 {
+            margin-top: 20px;
+        }
+
+        #imageSection img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sección de Contraseñas -->
+    <div id="passwordSection" class="center-message">
+        <p>Ingresa la contraseña para desbloquear las imágenes:</p>
+        <label for="datePassword">Fecha (dd/mm/aaaa):</label>
+        <input type="text" id="datePassword" placeholder="Ej: 12/12/2004">
+        <br>
+        <label for="wordPassword">Palabra especial:</label>
+        <input type="text" id="wordPassword" placeholder="Ej: zanahoria">
+        <br>
+        <button id="unlockButton">Desbloquear</button>
+    </div>
+
+    <!-- Sección de Imágenes Oculta -->
+    <div id="imageSection" class="hidden">
+        <h2>Querida Leidy</h2>
+        <img src="querida_leidy.jpg" alt="Querida Leidy">
+        <h2>Carta</h2>
+        <img src="carta.jpg" alt="Carta">
+    </div>
+
+    <script>
+        // Código JavaScript
+        window.onload = () => {
+            const unlockButton = document.getElementById('unlockButton');
+            const datePasswordInput = document.getElementById('datePassword');
+            const wordPasswordInput = document.getElementById('wordPassword');
+            const imageSection = document.getElementById('imageSection');
+            const passwordSection = document.getElementById('passwordSection');
+
+            // Contraseñas correctas
+            const correctDatePassword = "12/12/2004";
+            const correctWordPassword = "zanahoria";
+
+            // Agregar evento al botón de desbloqueo
+            unlockButton.addEventListener('click', () => {
+                const enteredDate = datePasswordInput.value.trim();
+                const enteredWord = wordPasswordInput.value.trim();
+
+                if (enteredDate === correctDatePassword && enteredWord.toLowerCase() === correctWordPassword.toLowerCase()) {
+                    passwordSection.classList.add('hidden'); // Oculta la sección de contraseñas
+                    imageSection.classList.remove('hidden'); // Muestra las imágenes
+                } else {
+                    alert("Contraseña incorrecta. Intenta de nuevo.");
+                }
+            });
+        };
+    </script>
+</body>
+</html>

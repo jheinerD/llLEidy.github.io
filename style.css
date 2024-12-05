@@ -1,0 +1,391 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, purple, green);
+    background-size: 200% 200%; /* Aumenta el tamaño del fondo para hacerlo más grande */
+    animation: moveBackground 6s linear infinite; /* Animación de movimiento */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 50%; /* Comienza en la posición inicial */
+    }
+    50% {
+        background-position: 100% 50%; /* Se mueve a la mitad */
+    }
+    100% {
+        background-position: 0% 50%; /* Vuelve a la posición inicial */
+    }
+}
+
+/* Estilo para el input con el mismo efecto de bordes y color que el botón */
+input[type="text"] {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: linear-gradient(45deg, green, purple);
+    color: white;
+    outline: none;
+    text-align: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: rgb(255, 255, 255); /* Añade un borde blanco cuando se hace foco en el input */
+    background: linear-gradient(45deg, purple, green); /* Mantiene el fondo al tener el foco */
+}
+
+/* Estilo del botón */
+.date-btn {
+    background: linear-gradient(45deg, green, purple);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    display: inline-block;
+}
+
+.date-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, purple, green);
+}
+
+/* Contenedor */
+.container {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+h1, h2 {
+    margin: 10px 0;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 800px;
+}
+
+.section {
+    text-align: center;
+    width: 30%;
+}
+
+/* Imagen 1 */
+#image1 {
+    width: 100%; /* Tamaño específico */
+    height: auto;  /* Mantener proporción */
+    max-width: 200px;  /* Limitar el ancho máximo */
+    border: 2px solid white;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Imagen 2 */
+#image2 {
+    width: 250px; /* Tamaño diferente para esta imagen */
+    height: auto;
+    max-width: 160px;
+    border: 2px solid white;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Imagen 3 */
+#image3 {
+    width: 135px; /* Tamaño específico para esta imagen */
+    height: auto;
+    max-width: 300px;
+    border: 2px solid white;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+
+.date-game {
+    margin-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Estilos para el mensaje de error */
+#attemptBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    z-index: 1000;
+    width: 70%;
+    max-width: 400px;
+}
+
+#attemptBox.hidden {
+    display: none;
+}
+
+/* Página secundaria */
+#nextPage {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.center-message {
+    font-size: 2em;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    
+}
+
+#messageBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    z-index: 1000;
+}
+
+#messageImage {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+#heartAnimation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: fall 4s ease-in infinite;
+}
+
+@keyframes fall {
+    0% {
+        top: -30px;
+        opacity: 1;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* Estilo para el mensaje en el centro con fondo gris transparente */
+.message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);  /* Fondo gris transparente */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    z-index: 999;  /* Asegura que el mensaje esté por encima de otros elementos */
+    text-align: center;
+}
+
+/* Estilos para el mensaje de error */
+.error-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo gris transparente */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.image-password {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7); /* Fondo gris transparente */
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    z-index: 1001;
+}
+#passwordPrompt {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7); /* Fondo gris transparente */
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    z-index: 1001;
+    display: none;  /* Ocultamos el formulario por defecto */
+}
+
+#passwordInput {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 1em;
+    border: 2px solid white;
+    background: linear-gradient(45deg, green, purple);
+    color: white;
+    outline: none;
+    text-align: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+#passwordInput:focus {
+    border-color: white;
+    background: linear-gradient(45deg, purple, green);
+}
+
+#passwordSubmit {
+    background: linear-gradient(45deg, green, purple);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+#passwordSubmit:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, purple, green);
+}
+
+/* Estilo para el botón de Cancelar */
+#cancelButton {
+    background: linear-gradient(45deg, red, orange); /* Diferente color de fondo para el botón de cancelar */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+#cancelButton:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, orange, red); /* Cambio de color al pasar el ratón */
+}
+
+#passwordFeedback {
+    margin-top: 10px;
+    font-size: 16px;
+    color: red;
+}
+
+/* Estilo para el contenedor del mensaje de error con imagen */
+.error-message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    z-index: 1000;
+    width: 80%;
+    max-width: 400px;
+}
+
+.error-message-box .error-image {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+/* Contenedor centrado */
+#centerMessage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 0, 0);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none; /* Por defecto, está oculto */
+}
+
+/* Texto del mensaje */
+#centerMessageText {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+
